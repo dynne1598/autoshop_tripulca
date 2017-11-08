@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Stocks;
+use App\Stock;
 use Illuminate\Http\Request;
 
 class StocksController extends Controller
@@ -14,9 +14,11 @@ class StocksController extends Controller
      */
     public function index()
     {
-        $stocks = Stocks::all();
+        $stocks = Stock::all();
         return view('/stocks/index', compact('stocks'));
+
     }
+
 
     /**
      * Show the form for creating a new resource.

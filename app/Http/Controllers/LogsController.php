@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Logs;
+use App\Log;
 use Illuminate\Http\Request;
 
 class LogsController extends Controller
@@ -14,7 +14,7 @@ class LogsController extends Controller
      */
     public function index()
     {
-         $logs = Logs::all();
+         $logs = Log::all();
         return view('/logs/index', compact('logs'));
     }
 

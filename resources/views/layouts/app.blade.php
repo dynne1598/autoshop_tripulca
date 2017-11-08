@@ -47,7 +47,7 @@
                            
                         @else
                             <li>
-                               <a href="#">
+                               <a href="supplier">
                                     Supplier |
                                 </a>
                             </li>
@@ -62,12 +62,12 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="log_manager">
                                     Log Manager |
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="invoice">
                                     Invoice |
                                 </a>
                             </li>

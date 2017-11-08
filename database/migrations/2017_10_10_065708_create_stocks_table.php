@@ -19,6 +19,7 @@ class CreateStocksTable extends Migration
             $table->string('description');
             $table->string('category');
             $table->string('item_price');
+            $table->string('unit_cost');
             $table->string('quantity');
             $table->string('supplier');
             $table->timestamp('created_at')->nullable();

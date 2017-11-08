@@ -1,10 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-	<form>
+	<!-- <form>
 		<input type="text" name="valueToSearch" placeholder="Value To Search"><br><br>
 		<input type="submit" name="search" value="Filter"><br><br>
-	</form>
+	</form> -->
+
+  <div class="col-md-6">
+        <input type="text" name="Item name" placeholder="Item name"> 
+        <button type="button" class="btn btn-primary">Filter</button>
+   </div>
+
 	<div class="panel">
 		<table class="table table-responsive" style="width: 70%" align="center">
 			
@@ -32,9 +38,12 @@
 		</table>
 	</div>
 		<form>
-			
-			<input type="submit" name="search" value="Total Income">
-			<input type="text" name=" " placeholder="Value To Search">
+		 <div class="col-md-6">
+            <input type="text" name="Item name" placeholder="Item name">
+        	<input type="text" class="total income">Total Income</button>
+    	</div>
 		</form>
 	
 @endsection
+
+ 

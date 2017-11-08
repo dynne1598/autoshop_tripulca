@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Supplier route
+Route::get('/supplier', 'SupplierController@index')->name('supplier');
+Route::resource('supplier','SupplierController');
+
 //Stocks route
 Route::get('/stocks', 'StocksController@index')->name('stocks');
 
@@ -26,7 +30,8 @@ Route::get('/stocks', 'StocksController@index')->name('stocks');
 Route::get('/sales', 'SalesController@index')->name('sales');
 
 //Logs routes
-Route::get('/logs', 'LogsController@index')->name('logs');
+Route::get('/log_manager', 'LogsController@index')->name('logs');
 
 //Invoice routes
 Route::get('/invoice', 'InvoiceController@index')->name('invoice');
+
