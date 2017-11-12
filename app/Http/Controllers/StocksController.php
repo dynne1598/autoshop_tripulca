@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Stock;
+use App\Supplier;
 use Illuminate\Http\Request;
 
 class StocksController extends Controller
@@ -14,9 +15,9 @@ class StocksController extends Controller
      */
     public function index()
     {
-    
-        $stocks = Stock::all();
-        return view('/stocks/index', compact('stocks'));
+        
+        $supplier = Supplier::orderBy('id')->with('stock')->get();
+        return view('/stocks/index', compact('supplier'));
         //nadungag
         // $stocks = Stock::with('supplier')->get();
 

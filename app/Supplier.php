@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Stock;
 
 class Supplier extends Model
 {
@@ -12,11 +13,11 @@ class Supplier extends Model
      * @var array
      */
     protected $fillable = [
-        'supplier_name', 'stock_code', 'unit_cost', 'item_name',
+        'supplier_name', 'stock_code', 'unit_cost', 'item_name', 'item_price', 'created_at'
         ];
 
     public function stock(){
-	    return $this->belongsTo('App\Stock', 'supplier_id');
+	    return $this->hasOne('App\Stock');
 	}
 
 	public $timestamps = false;

@@ -27,18 +27,18 @@
 				<th>DATE</th>
 			    <td>Action</td>
 			</tr>
-			@foreach ($stocks as $stock)
+			@foreach ($supplier as $supply)
 				<tr>
 				
-			    <td>{{ $stock->id }}</td>
-			    <td>{{$stock->item_name}}</td>
-			    <td>{{$stock->description}}</td>
-			    <td>{{$stock->category}}</td>
-			    <td>{{$stock->item_price}}</td>
-          <td>{{$stock->unit_cost}}</td>
-					<td>{{$stock->quantity}}</td>
-					<td>{{$stock->supplier_name}}</td>
-					<td>{{$stock->created_at}}</td>
+			    <td>{{$supply->stock_code}}</td>
+			    <td>{{$supply->item_name}}</td>
+			    <td>{{$supply->stock->description}}</td>
+			    <td>{{$supply->stock->category}}</td>
+			    <td>{{$supply->item_price}}</td>
+          <td>{{$supply->unit_cost}}</td>
+					<td>{{$supply->stock->quantity}}</td>
+					<td>{{$supply->supplier_name}}</td>
+					<td>{{$supply->created_at}}</td>
 					<td>
                     <!-- <td><a href="#" class="confirm-delete btn mini red-stripe" role="button" data-target="#exampleModal" data-id="2"></a></td> -->
 			<!-- delete button -->

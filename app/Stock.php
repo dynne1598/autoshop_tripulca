@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Supplier;
 
 class Stock extends Model
 {
@@ -17,7 +18,7 @@ class Stock extends Model
     protected $table = 'stocks';
 
     public function supplier(){
-	    return $this->belongsTo('App\Supplier', 'id');
+	    return $this->belongsTo('App\Supplier');
     // //nadungag
     //     return hasMany ('App/Supplier','Supplier_id');
 	}

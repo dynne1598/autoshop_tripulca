@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Supplier;
 use App\Stock;
 use Illuminate\Http\Request;
+use App\Events\SupplierCreate;
 
 class SupplierController extends Controller
 {
@@ -38,28 +39,38 @@ class SupplierController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-          
+    {  
+
         $data_supp = [
             'supplier_name' => $request->input('supplier_name'),
-            'unit_cost' => '123',
+            'unit_cost' => $request->input('unit_cost'),
             'stock_code' => $request->input('stock_code'),
             'item_name' => $request->input('item_name'),
+            'item_price' => $request->input('item_price'),
+            'created_at' => date('Y-d-m')
         ];
 
         $supplier = Supplier::create($data_supp);
+    
+        $stock = new Stock();
+        $stock->item_name = $request->input('item_name');
+        $stock->description = $request->input('description');
+        $stock->category = $request->input('category');
+        $stock->quantity =$request->input('quantity');     
 
-        $data_stock = [
-            'item_price' => $request->input('item_price'),
-            'item_name' => $request->input('item_name'),
-            'quantiy' => $request->input('quantity'),
-            'description' => $request->input('description'),
-            'category' => $request->input('category')
-        ];
-        $stock = new Stock($data_stock);
-        $stock->supplier()->associate($request->input('item_price'), $request->input('item_name'), $request->input('quantity'), $request->input('description'), $request->input('category'), $request->input('supplier_name'));
+        $supplier->stock()->save($stock);
+        // event(new SupplierCreate($supplier ,$stock_data));
+        // $data_stock = [
+        //     'item_price' => $request->input('item_price'),
+        //     'item_name' => $request->input('item_name'),
+        //     'quantiy' => $request->input('quantity'),
+        //     'description' => $request->input('description'),
+        //     'category' => $request->input('category')
+        // ];
+        // $stock = new Stock($data_stock);
+        // $stock->supplier()->associate($request->input('item_price'), $request->input('item_name'), $request->input('quantity'), $request->input('description'), $request->input('category'), $request->input('supplier_name'));
                 
-        $stock->save();
+        // $stock->save();
 
         
         return redirect()->route('supplier.index')
@@ -108,8 +119,9 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        $supply = Supplier::find($id);    
-        $supply->delete();
+        $supply = Supplier::find($id); 
+        $supply->delete();   
+        $supply->stock()->delete();
 
         \Session::flash('message', 'Successfully deleted the nerd!');
         return \Redirect::to('supplier');

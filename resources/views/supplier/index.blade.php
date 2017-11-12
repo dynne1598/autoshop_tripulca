@@ -71,15 +71,15 @@
                         </div>
 
                          <div class="form-group{{ $errors->has('Item Price') ? ' has-error' : '' }}">
-                            <label for="Item Price" class="col-md-4 control-label">Unit Cost</label>
+                            <label for="unit_cost" class="col-md-4 control-label">Unit Cost</label>
 
                             <div class="col-md-6">
-                                <input id="Item Price" type="number" class="form-control" name="item_price" value="{{ old('Item Price') }}" required>
+                                <input id="unit_cost" type="number" class="form-control" name="unit_cost" value="{{ old('unit_cost') }}" required>
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('Item Price') ? ' has-error' : '' }}">
-                            <label for="Item Price" class="col-md-4 control-label">Quantity</label>
+                        <div class="form-group{{ $errors->has('Quantity') ? ' has-error' : '' }}">
+                            <label for="Quantity" class="col-md-4 control-label">Quantity</label>
 
                             <div class="col-md-6">
                                 <input id="quantity" type="number" class="form-control" name="quantity" value="{{ old('quantity') }}" required>
