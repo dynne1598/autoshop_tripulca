@@ -20,7 +20,7 @@ class CreateSupplierTable extends Migration
             $table->string('item_name');
             $table->string('unit_cost');
             $table->timestamp('created_at')->nullable();
-            $table->string('item_sold');
+
         
         });
     }

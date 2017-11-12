@@ -14,8 +14,11 @@ class StocksController extends Controller
      */
     public function index()
     {
+    
         $stocks = Stock::all();
         return view('/stocks/index', compact('stocks'));
+        //nadungag
+        // $stocks = Stock::with('supplier')->get();
 
     }
 
@@ -38,7 +41,7 @@ class StocksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+           //
     }
 
     /**

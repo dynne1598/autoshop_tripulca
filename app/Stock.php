@@ -12,12 +12,14 @@ class Stock extends Model
      * @var array
      */
     protected $fillable = [
-        'item_name', 'description', 'category', 'item_price', 'unit_cost', 'quantity', 'supplier',
+        'item_name', 'description', 'category', 'item_price', 'unit_cost', 'quantity', 'supplier_name',
     ];
+    protected $table = 'stocks';
 
     public function supplier(){
-	    return $this->hasOne('App\Supplier', 'id');
+	    return $this->belongsTo('App\Supplier', 'id');
+    // //nadungag
+    //     return hasMany ('App/Supplier','Supplier_id');
 	}
     public $timestamps = false;
 }
- 

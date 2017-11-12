@@ -6,12 +6,12 @@
 
 
 
- <div class="col-md-8 col-md-offset-2">
-        <div class="title m-b-md">
-            <center><b>Tripulca Autoshop</b></center>
-                <br/>
-                    <center><small><i>Sales & inventory</i></small></center>
-                         </div>
+ <div class="col-md-10 col-md-offset-1">
+    <div class="title m-b-md">
+        <center><b>REGISTER A USER</b></center>
+            <br/>
+    </div>
+</div>
 
 
 
@@ -58,7 +58,12 @@
                             <label for="role" class="col-md-4 control-label">Role</label>
 
                             <div class="col-md-6">
-                                <input id="role" type="role" class="form-control" name="role" value="{{ old('role') }}" required>
+                                <select id="role" type="role" class="form-control" name="role" value="{{ old('role') }}" required>
+                                    <option>--Select User's Role--</option>
+                                    <option>Admin</option>
+                                    <option>Owner</option>
+                                    <option>Employee</option>
+                                </select>
 
                                 @if ($errors->has('role'))
                                     <span class="help-block">

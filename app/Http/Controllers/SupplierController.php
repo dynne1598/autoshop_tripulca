@@ -39,8 +39,10 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
+          
         $data_supp = [
             'supplier_name' => $request->input('supplier_name'),
+            'unit_cost' => '123',
             'stock_code' => $request->input('stock_code'),
             'item_name' => $request->input('item_name'),
         ];
@@ -50,16 +52,14 @@ class SupplierController extends Controller
         $data_stock = [
             'item_price' => $request->input('item_price'),
             'item_name' => $request->input('item_name'),
-            'quantiy' => $request->input('qty'),
-            'supplier_id' => '1',
+            'quantiy' => $request->input('quantity'),
             'description' => $request->input('description'),
             'category' => $request->input('category')
         ];
         $stock = new Stock($data_stock);
-        $stock->supplier()->associate($data_stock);
+        $stock->supplier()->associate($request->input('item_price'), $request->input('item_name'), $request->input('quantity'), $request->input('description'), $request->input('category'), $request->input('supplier_name'));
+                
         $stock->save();
-
-        die;
 
         
         return redirect()->route('supplier.index')

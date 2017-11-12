@@ -37,7 +37,7 @@
 			    <td>{{$stock->item_price}}</td>
           <td>{{$stock->unit_cost}}</td>
 					<td>{{$stock->quantity}}</td>
-					<td>{{$stock->supplier}}</td>
+					<td>{{$stock->supplier_name}}</td>
 					<td>{{$stock->created_at}}</td>
 					<td>
                     <!-- <td><a href="#" class="confirm-delete btn mini red-stripe" role="button" data-target="#exampleModal" data-id="2"></a></td> -->

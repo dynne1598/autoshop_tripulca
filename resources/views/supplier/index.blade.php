@@ -82,7 +82,7 @@
                             <label for="Item Price" class="col-md-4 control-label">Quantity</label>
 
                             <div class="col-md-6">
-                                <input id="quantity" type="number" class="form-control" name="qty" value="{{ old('qty') }}" required>
+                                <input id="quantity" type="number" class="form-control" name="quantity" value="{{ old('quantity') }}" required>
                             </div>
                         </div>
 
@@ -124,7 +124,6 @@
 				<th>DATE OF PURCHASE</th>
 				<th>ITEM PRICE</th>
         <th>UNIT COST</th>
-				<th>ITEM SOLD</th>
 				<td>Action</td>
 			</tr>
 			@foreach ($supplier as $supplier)
@@ -136,7 +135,7 @@
 				    <td>{{$supplier->created_at}}</td>
 				    <td>{{$supplier->item_price}}</td>
             <td>{{$supplier->unit_cost}}</td>
-					  <td>{{$supplier->item_sold}}</td>
+					
             <td>
               
             <div id="modal">
