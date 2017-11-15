@@ -14,7 +14,12 @@ class LogsController extends Controller
      */
     public function index()
     {
-         $logs = Log::all();
+        $logs = Log::all();
+
+
+        $action='Deleted chuchubels';
+        $this->store('stock',$action);
+
         return view('/logs/index', compact('logs'));
     }
 
@@ -34,9 +39,16 @@ class LogsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($type, $action)
     {
-        //
+
+        $data_logs = [
+            'type' => $type,
+            'action' => $action
+           
+        ];
+
+        $logs = Log::create($data_logs);
     }
 
     /**
@@ -45,10 +57,6 @@ class LogsController extends Controller
      * @param  \App\Logs  $logs
      * @return \Illuminate\Http\Response
      */
-    public function show(Logs $logs)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

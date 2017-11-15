@@ -6,6 +6,10 @@ use App\Supplier;
 use App\Stock;
 use Illuminate\Http\Request;
 use App\Events\SupplierCreate;
+use App\Http\Controllers\LogsController;
+
+
+
 
 class SupplierController extends Controller
 {
@@ -46,8 +50,8 @@ class SupplierController extends Controller
             'unit_cost' => $request->input('unit_cost'),
             'stock_code' => $request->input('stock_code'),
             'item_name' => $request->input('item_name'),
-            'item_price' => $request->input('item_price'),
-            'created_at' => date('Y-d-m')
+            'item_price' => $request->input('item_price')
+            // 'created_at' => date('Y-d-m')
         ];
 
         $supplier = Supplier::create($data_supp);
@@ -59,6 +63,12 @@ class SupplierController extends Controller
         $stock->quantity =$request->input('quantity');     
 
         $supplier->stock()->save($stock);
+
+        // para maka add sa item
+        $action ='Added new stock ' . $stock->item_name;
+        (new LogsController)->store('stock', $action);
+
+
         // event(new SupplierCreate($supplier ,$stock_data));
         // $data_stock = [
         //     'item_price' => $request->input('item_price'),

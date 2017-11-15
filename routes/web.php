@@ -31,12 +31,14 @@ Route::get('/sales', 'SalesController@index')->name('sales');
 
 //Logs routes
 Route::get('/log_manager', 'LogsController@index')->name('logs');
+Route::resource('logs','LogsController');
+
 
 //Invoice routes
 Route::get('/invoice', 'InvoiceController@index')->name('invoice');
 
-//nadungag
-//password reset routes
-Route::get('password/reset/{token?}','Auth\ResetPasswordController@showResetForm');
-Route::post('password/email','Auth\ResetPasswordController@sendResetLinkEmail');
-Route::post('password/reset','Auth\ResetPasswordController@reset');
+// //nadungag
+// //password reset routes
+// Route::get('password/reset/{token?}','Auth\ResetPasswordController@showResetForm');
+// Route::post('password/email','Auth\ResetPasswordController@sendResetLinkEmail');
+// Route::post('password/reset','Auth\ResetPasswordController@reset');

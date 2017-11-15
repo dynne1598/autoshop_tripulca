@@ -11,7 +11,8 @@ class Log extends Model
      *
      * @var array
      */
-      protected $fillable = [
-        'item_log','stock_log','account_log', 'login_history',
+    protected $fillable = [
+        'type','action'
     ];
+    public $timestamps = false;
 }

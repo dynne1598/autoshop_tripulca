@@ -95,13 +95,13 @@
                         </div>
 
 
-                        <div class="form-group{{ $errors->has('Date') ? ' has-error' : '' }}">
+                       <!--  <div class="form-group{{ $errors->has('Date') ? ' has-error' : '' }}">
                             <label for="Date" class="col-md-4 control-label">Date</label>
 
                             <div class="col-md-6">
                                 <input id="Date" type="date" class="form-control" name="date" value="{{ old('Date') }}" required>
                              </div>
-                        </div>
+                        </div> -->
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                            <button type="submit" class="btn btn-primary">
