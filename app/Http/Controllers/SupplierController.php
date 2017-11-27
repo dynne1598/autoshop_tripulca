@@ -10,7 +10,6 @@ use App\Http\Controllers\LogsController;
 
 
 
-
 class SupplierController extends Controller
 {
     /**
@@ -67,21 +66,6 @@ class SupplierController extends Controller
         // para maka add sa item
         $action ='Added new stock ' . $stock->item_name;
         (new LogsController)->store('stock', $action);
-
-
-        // event(new SupplierCreate($supplier ,$stock_data));
-        // $data_stock = [
-        //     'item_price' => $request->input('item_price'),
-        //     'item_name' => $request->input('item_name'),
-        //     'quantiy' => $request->input('quantity'),
-        //     'description' => $request->input('description'),
-        //     'category' => $request->input('category')
-        // ];
-        // $stock = new Stock($data_stock);
-        // $stock->supplier()->associate($request->input('item_price'), $request->input('item_name'), $request->input('quantity'), $request->input('description'), $request->input('category'), $request->input('supplier_name'));
-                
-        // $stock->save();
-
         
         return redirect()->route('supplier.index')
                         ->with('success','Item created successfully');
@@ -104,9 +88,12 @@ class SupplierController extends Controller
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function edit(Supplier $supplier)
+    public function edit($id)
     {
-        //
+
+       $supplier = Supplier::find($id);
+       $supplier['stock'] = $supplier->stock()->get();
+       return view('supplier.form', compact('supplier'));
     }
 
     /**
@@ -116,9 +103,40 @@ class SupplierController extends Controller
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update($id, Supplier $supplier)
     {
-        //
+        $supply = Supplier::findOrFail($id);
+
+            $this->validate($request, [
+                'item_name' => 'required|string|max:255',
+                'stock_code' => 'required',
+                'description' => 'required|string|max:255',
+                'category' => 'required|string|max:255',
+                'item_price' => 'required',
+                'unit_cost' => 'required',
+                'quantity' => 'required',
+                'supplier' => 'required|string|max:255',
+            ]);
+            $supply->update([
+
+                 'item_name' => $request['item_name'],
+                'stock_code' => $request['stock_code'],
+                'description' => $request['description'],
+                'category' => $request['category'],
+                'item_price' => $request['item_price'],
+                'unit_cost' => $request['unit_cost'],
+                'quantity' => $request['quantity'],
+                'supplier' => $request['supplier'],
+
+            ]);
+
+        $supply = Supplier::findOrFail($request['$id']);
+
+        $action = 'Updated stock '.$supply->item_name;
+        (new LogsController)->store('stock', $action);
+
+
+
     }
 
     /**
@@ -129,9 +147,14 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
+
         $supply = Supplier::find($id); 
         $supply->delete();   
         $supply->stock()->delete();
+
+        $action ='Deleted stock ' . $supply->item_name;
+        (new LogsController)->store('stock', $action);
+
 
         \Session::flash('message', 'Successfully deleted the nerd!');
         return \Redirect::to('supplier');

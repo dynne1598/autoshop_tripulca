@@ -6,55 +6,57 @@
 		<input type="submit" class="btn btn-primary" value="Filter"><br><br>
 	</div>
 	<div class="panel">
-		<table class="table table-responsive" style="width: 70%" align="center">
-	
 		
-			<tr>
-				<th>ID</th>
-				<th>ACTION</th>
-				<th>DATE</th>
-			</tr>
 
-			@foreach ($logs as $logs)
-				<tr>
-				    <td>{{$logs->id}}</td>
-				    <td>{{$logs->action}}</td>
-				    <td>{{$logs->date}}</td>
-				</tr>
-			@endforeach
-		 <div role="tabpanel">
+		  <div role="tabpanel">
+		 	 <ul class="nav nav-tabs nav-justified" role="tablist">
+			    <li class="active"><a href="#account" data-toggle="tab">Account logs</a></li>
+			    <li><a href="#stock" data-toggle="tab">Stock logs</a></li>   
+			</ul>
 
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li role="presentation" class="active">
-		      <a href="#logs" aria-controls="logs" role="tab" data-toggle="tab">
-		        Account logs
-		       </a>
-      		</li>
-			<li role="presentation">
-	          <a href="#Stock" aria-controls="Stock" role="tab" data-toggle="tab">
-	            Stock logs
-	          </a>
-	 		</li>
-	 	</ul>
-            
+s
+		<div class="tab-content">
+		    <div class="tab-pane active" id="account">
 
-     	<!-- <ul class="nav nav-tabs nav-justified" role="tablist">
-		  <li class="active"><a href="#">Account logs</a></li>
-		  <li><a href="#">Menu 1</a></li>
-		  <li><a href="#">Menu 2</a></li>
-		  <li><a href="#">Menu 3</a></li>
-		</ul>
+		    	<table class="table table-responsive" style="width: 70%" align="center">
 
-		<ul class="nav nav-tabs nav-justified" role="tablist">
-		  <li class="active"><a href="#">Stock logs</a></li>
-		  <li><a href="#">Menu 1</a></li>
-		  <li><a href="#">Menu 2</a></li>
-		  <li><a href="#">Menu 3</a></li>
-		</ul> -->
-	
-		</table>
+					<tr>
+						<th>ID</th>
+						<th>ACTION</th>
+						<th>DATE</th>
+					</tr>
+					@foreach ($acc_logs as $acc_log)
+						<tr>
+						    <td>{{$acc_log->id}}</td>
+						    <td>{{$acc_log->action}}</td>
+						    <td>{{$acc_log->date}}</td>
+						</tr>
+					@endforeach
+				</table>	
+
+		    </div>
+		    <div class="tab-pane" id="stock">
+		    	<table class="table table-responsive" style="width: 70%" align="center">
+
+					<tr>
+						<th>ID</th>
+						<th>ACTION</th>
+						<th>DATE</th>
+					</tr>
+					@foreach ($stock_logs as $stock_log)
+						<tr>
+						    <td>{{$stock_log->id}}</td>
+						    <td>{{$stock_log->action}}</td>
+						    <td>{{$stock_log->date}}</td>
+						</tr>
+					@endforeach
+				</table>	
+		    </div>
+		</div>
 		
+		
+
+	
 
 	</div>
 @endsection

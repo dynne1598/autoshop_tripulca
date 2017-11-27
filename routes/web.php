@@ -37,6 +37,15 @@ Route::resource('logs','LogsController');
 //Invoice routes
 Route::get('/invoice', 'InvoiceController@index')->name('invoice');
 
+
+// Edit Specific supply
+// Route::get('/supplier/{id}/edit',['uses' => 'SupplierController@edit','as' => 'supply.edit']);
+
+//Update Specific supply
+Route::post('/supplier/update',['uses' => 'SupplierController@update','as' =>'supply.update']);
+
+
+
 // //nadungag
 // //password reset routes
 // Route::get('password/reset/{token?}','Auth\ResetPasswordController@showResetForm');

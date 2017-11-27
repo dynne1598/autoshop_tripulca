@@ -14,13 +14,18 @@ class LogsController extends Controller
      */
     public function index()
     {
-        $logs = Log::all();
 
+        // $stock_logs = Log::all();
+        $stock_logs = \DB::table('logs')->where('type', '=', "stock")->get();
+        $acc_logs = \DB::table('logs')->where('type', '=', "account")->get();
+    
+        // $acc_logs = where('account->dining->', 'salad')
 
-        $action='Deleted chuchubels';
-        $this->store('stock',$action);
+        // $action='Deleted chuchubels';
+        // $this->store('stock',$action);
 
-        return view('/logs/index', compact('logs'));
+         
+        return view('/logs/index', compact('stock_logs','acc_logs'));
     }
 
     /**
@@ -49,8 +54,9 @@ class LogsController extends Controller
         ];
 
         $logs = Log::create($data_logs);
-    }
 
+
+    }
     /**
      * Display the specified resource.
      *

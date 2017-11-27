@@ -94,7 +94,6 @@
                        </div>
                         </div>
 
-
                        <!--  <div class="form-group{{ $errors->has('Date') ? ' has-error' : '' }}">
                             <label for="Date" class="col-md-4 control-label">Date</label>
 
@@ -135,9 +134,11 @@
 				    <td>{{$supplier->created_at}}</td>
 				    <td>{{$supplier->item_price}}</td>
             <td>{{$supplier->unit_cost}}</td>
+
 					
             <td>
-              
+
+            <!-- delete method -->
             <div id="modal">
               <div class="col-md-6">
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
@@ -172,21 +173,24 @@
 <!-- <td><a class="btn mini blue-stripe" href="{site_url()}admin/editFront/2"></a></td> -->
     <div id="modal">
            <div class="col-md-6">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button>
+            <a href="{{ route('supplier.edit',[$supplier->id]) }}">
+             <button type="button" class="btn btn-primary">Edit</button>
+            </a>
+
         </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><b>Want to do changes?</b></h5>
+        <h5 class="modal-title" id="edit"><b>Want to do changes?</b></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
 
 <div class="modal-body">
-         <form class="form-horizontal" method="POST" action="{{ route('supplier.store') }}">
+         <form class="form-horizontal" method="POST" action="{{ route('supplier.update', $supplier->id) }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('Item Name') ? ' has-error' : '' }}">
@@ -266,7 +270,7 @@
          </div>
      </div>
   </div>
-</td>					
+</td>		
 
 				</tr>
 			@endforeach
