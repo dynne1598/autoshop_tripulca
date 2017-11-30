@@ -4,23 +4,41 @@
 
 
 
-
-
- <div class="col-md-10 col-md-offset-1">
-    <div class="title m-b-md">
-        <center><b>REGISTER A USER</b></center>
-            <br/>
-    </div>
-</div>
-
-
-
-
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-4">
             <div class="panel panel-default">
-                <!-- <div class="panel-heading glyphicon glyphicon-euro">Register</div> -->
+                <table class="table table-responsive" style="width: 70%" align="center">
+                    <thead>
+                        <tr>
+                            <th>NAME</th>
+                            <th>EMAIL</th>
+                            <th>ROLE</th>
+                            <th>ACTION</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                      @foreach ($users as $user)
+                        <tr>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->role}}</td>
+                            <td><a href="{{route('register.destroy',$user->id) }}"><button type="submit" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row" >
+        <div class="col-md-4" style="float:left; margin-top: -250px;">
+            <div class="panel panel-default">
+                <div class="panel-heading"><b>REGISTER A USER</b></div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
@@ -60,8 +78,8 @@
                             <div class="col-md-6">
                                 <select id="role" type="role" class="form-control" name="role" value="{{ old('role') }}" required>
                                     <option>--Select User's Role--</option>
+                                    <option>Super Admin</option>
                                     <option>Admin</option>
-                                    <option>Owner</option>
                                     <option>Employee</option>
                                 </select>
 
@@ -106,5 +124,18 @@
             </div>
         </div>
     </div>
+
+
+
+
+    
 </div>
+
+
+
+
+
+
 @endsection
+
+           

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Stock;
 use App\Supplier;
 use Illuminate\Http\Request;
+use App\Sale;
 
 class StocksController extends Controller
 {
@@ -51,7 +52,7 @@ class StocksController extends Controller
      * @param  \App\Stocks  $stocks
      * @return \Illuminate\Http\Response
      */
-    public function show(Stocks $stocks)
+    public function show(Stock $stocks)
     {
         //
     }
@@ -62,9 +63,12 @@ class StocksController extends Controller
      * @param  \App\Stocks  $stocks
      * @return \Illuminate\Http\Response
      */
-    public function edit(Stocks $stocks)
+    public function edit($id)
     {
-        //
+        $stock = Stock::find($id);
+       $stock['supplier'] = $stock->supplier()->get();
+       // return compact('stock');
+       return view('stocks.edit', compact('stock'));
     }
 
     /**
@@ -74,11 +78,50 @@ class StocksController extends Controller
      * @param  \App\Stocks  $stocks
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Stocks $stocks)
+    public function update($id, Stock $request)
     {
-        //
+        //para makita ang parsed
+       return compact('request');
+       
+        $stock = Stock::find($id);
+            $stock->update([
+
+                 'item_name' => $request['item_name'],
+                'stock_code' => $request['stock_code'],
+                'description' => $request['description'],
+                'category' => $request['category'],
+                'item_price' => $request['item_price'],
+                'unit_cost' => $request['unit_cost'],
+                'quantity' => $request['quantity'],
+                'supplier' => $request['supplier'],
+
+            ]);
+    }
+//     //para ma minus-san tong qty sa stocks
+    public function buy($id, $quantity) {
+        $stocks = Stock::find($id);
+        $stocks['supplier'] = $stocks->supplier()->get();
+        
+        $final_qty = $stocks->quantity - $quantity;
+        $result = Stock::where('id', $id)->update(['quantity'=> $final_qty]);
+
+
+        $data_sales = [
+            'item_name' => $stocks->item_name,
+            'description' => $stocks->description,
+            'item_price' => $stocks['supplier'][0]->item_price,
+            'quantity' => $stocks->quantity,
+            'total' => 0
+            // 'created_at' => date('Y-d-m')
+        ];
+
+        $sales = Sale::create($data_sales);
+         return redirect('sales');
+
+        
     }
 
+   
     /**
      * Remove the specified resource from storage.
      *

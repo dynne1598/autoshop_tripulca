@@ -25,7 +25,7 @@
 				<th>QUANTITY</th>
 				<th>SUPPLIER</th>
 				<th>DATE</th>
-			    <td>Action</td>
+			  <td>Action</td>
 			</tr>
 			@foreach ($supplier as $supply)
 				<tr>
@@ -42,10 +42,10 @@
 					<td>
                     <!-- <td><a href="#" class="confirm-delete btn mini red-stripe" role="button" data-target="#exampleModal" data-id="2"></a></td> -->
 			<!-- delete button -->
-		   <div id="modal">
+		<!--    <div id="modal">
            <div class="col-md-6">
         	  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>	 
-           </div>
+       </div>
 
 		  <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
   		  <div class="modal-dialog" role="document">
@@ -64,15 +64,19 @@
       	<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-secondary">Confirm</button> 
       </div>
-  </td>
+  </td> -->
 <!-- Edit button -->
 <td>
 
 <!-- <td><a class="btn mini blue-stripe" href="{site_url()}admin/editFront/2"></a></td> -->
-		<div id="modal">
+
+
+		   <div id="modal">
            <div class="col-md-6">
-        	  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button>
+            <a href="{{ route('stocks.edit',[$supply->stock->id]) }}">
+             <button type="button" class="btn btn-primary">Edit</button>
         </div>
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -161,11 +165,28 @@
                            <button type="submit" class="btn btn-primary">Updated</button>
                         </div>
                     </form>
-      			</div>
-    		 </div>
- 		 </div>
-	</div>
-</td>
+      			     </div>
+    		      </div>
+ 		       </div>
+	     </div>
+    </td>
+               <td>
+                  <div class="col-md-2">
+                    <select>
+                      <?php 
+                            for ($i=0; $i < $supply->stock->quantity; $i++){ ?>
+                              <option><?= $i + 1; ?></option>
+                      <?php 
+                      }?>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <a href="{{ route('stocks.buy',[$supply->stock->id, $supply->stock->quantity]) }}">
+                        <button type="button" class="btn btn-danger">Buy</button>  
+                    </a> 
+                  </div>
+               </td>
+
 </tr>
 			@endforeach
 			<!--  -->

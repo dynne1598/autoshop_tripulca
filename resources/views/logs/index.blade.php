@@ -1,10 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<div>
-		<input type="text" name="valueToSearch" placeholder="Value To Search"><br><br>
-		<input type="submit" class="btn btn-primary" value="Filter"><br><br>
-	</div>
+	
 	<div class="panel">
 		
 
@@ -14,7 +11,6 @@
 			    <li><a href="#stock" data-toggle="tab">Stock logs</a></li>   
 			</ul>
 
-s
 		<div class="tab-content">
 		    <div class="tab-pane active" id="account">
 

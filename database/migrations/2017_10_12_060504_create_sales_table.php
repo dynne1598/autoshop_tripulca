@@ -19,6 +19,7 @@ class CreateSalesTable extends Migration
             $table->string('description');
             $table->string('item_price');
             $table->string('quantity');
+            $table->timestamp('created_at')->nullable();
             $table->string('total');
         });
     }

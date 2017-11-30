@@ -14,4 +14,5 @@ class Sale extends Model
       protected $fillable = [
         'item_name','description','item_price', 'quantity', 'total',
     ];
+    public $timestamps = false;
 }

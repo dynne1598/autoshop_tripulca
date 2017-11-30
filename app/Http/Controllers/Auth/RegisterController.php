@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 class RegisterController extends Controller
 {
 
@@ -43,12 +45,49 @@ class RegisterController extends Controller
         // $this->middleware('guest');
     }
 
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        
+        event(new Registered($users = $this->create($request->all())));
+
+        return $this->registered($request, $users)?:redirect('register');
+    }
+    //para makadelete 
+     public function destroy($id)
+    {
+
+        $user = Register::find($id); 
+        $user->delete();   
+
+        $action ='Deleted user ' . $user->name;
+        (new LogsController)->store('user', $action);
+
+
+        \Session::flash('message', 'Successfully deleted the nerd!');
+        return \Redirect::to('register');
+
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+    //   public function register(Request $request)
+    // {
+    //     $this->validator($request->all())->validate();
+
+    //     event(new Registered($user = $this->create($request->all()));
+
+    //     return $this->registered($request,$user)?:redirect('users');
+       
+    // }
+
+
+
     protected function validator(array $data)
     {
         return Validator::make($data, [

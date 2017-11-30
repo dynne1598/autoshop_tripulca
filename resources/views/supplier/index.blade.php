@@ -94,13 +94,6 @@
                        </div>
                         </div>
 
-                       <!--  <div class="form-group{{ $errors->has('Date') ? ' has-error' : '' }}">
-                            <label for="Date" class="col-md-4 control-label">Date</label>
-
-                            <div class="col-md-6">
-                                <input id="Date" type="date" class="form-control" name="date" value="{{ old('Date') }}" required>
-                             </div>
-                        </div> -->
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                            <button type="submit" class="btn btn-primary">
@@ -253,17 +246,9 @@
                        </div>
                         </div>
 
-
-                        <div class="form-group{{ $errors->has('Date') ? ' has-error' : '' }}">
-                            <label for="Date" class="col-md-4 control-label">Date</label>
-
-                            <div class="col-md-6">
-                                <input id="Date" type="date" class="form-control" name="date" value="{{ old('Date') }}" required>
-                             </div>
-                        </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                           <button type="submit" class="btn btn-primary">Save changes</button>
+                            <a href="{{ route('supplier.update',[$supplier->supplier]) }}">
+                           <button type="submit" class="btn btn-primary">Submit</button></a>
                         </div>
                     </form>
             </div>

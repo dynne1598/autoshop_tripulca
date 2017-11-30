@@ -105,9 +105,10 @@ class SupplierController extends Controller
      */
     public function update($id, Supplier $supplier)
     {
+       
         $supply = Supplier::findOrFail($id);
-
-            $this->validate($request, [
+                
+            $this->validate($request,[
                 'item_name' => 'required|string|max:255',
                 'stock_code' => 'required',
                 'description' => 'required|string|max:255',
@@ -117,6 +118,8 @@ class SupplierController extends Controller
                 'quantity' => 'required',
                 'supplier' => 'required|string|max:255',
             ]);
+
+
             $supply->update([
 
                  'item_name' => $request['item_name'],
@@ -130,12 +133,14 @@ class SupplierController extends Controller
 
             ]);
 
-        $supply = Supplier::findOrFail($request['$id']);
+        // $supply = Supplier::findOrFail($request['$id']);
+            
+        $supply->Stock()->save($supply);
 
         $action = 'Updated stock '.$supply->item_name;
         (new LogsController)->store('stock', $action);
 
-
+        return redirect()->route('supplier');
 
     }
 

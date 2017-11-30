@@ -45,35 +45,35 @@
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                            
-                        @else
+                        @elseif(Auth::user()->role === 'Admin')
                             <li>
-                               <a href="supplier">
+                               <a href="/supplier">
                                     Supplier |
                                 </a>
                             </li>
                            <li>
-                               <a href="stocks">
+                               <a href="/stocks">
                                     Stocks |
                                 </a>
                             </li>
                             <li>
-                                <a href="sales">
+                                <a href="/sales">
                                     Sales | 
                                 </a>
                             </li>
                             <li>
-                                <a href="log_manager">
+                                <a href="/log_manager">
                                     Log Manager |
                                 </a>
                             </li>
                             <li>
-                                <a href="invoice">
+                                <a href="/invoice">
                                     Invoice |
                                 </a>
                             </li>
 
                             <li>
-                                <a href="{{ url('/register') }}">
+                                <a href="/register">
                                      Register a user |
                                 </a>
                             </li>
@@ -100,11 +100,36 @@
 
                                 </ul>
                             </li>
-                             @if (Auth::user()->role == 'admin')
-                                <li>
-                                   
-                                </li>
-                            @endif
+                        @elseif (Auth::user()->role == 'Owner')
+                            
+                            <li>
+                                <a href="/sales">
+                                    Sales | 
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+    
+
+                                </ul>
+                            </li>        
+                        @else
+
                         @endif
                     </ul>
                 </div>
