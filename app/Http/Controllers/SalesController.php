@@ -14,7 +14,26 @@ class SalesController extends Controller
      */
     public function index()
     {
-         $sales = Sale::all();
+
+        // echo "hello";die;
+        // echo $request->input('from_date');
+        // die();
+
+        $sales = Sale::all();
+        return view('/sales/index', compact('sales'));
+    }
+
+    // function date from/to
+    public function getDateFrom(Request $request)
+    {
+        $sales = null;
+        try {
+            $sales = \DB::table('sales')->whereBetween('date', array($request->input('from_date'), $request->input('to_date')))->get();
+
+        } catch (\Exception $e) {
+            // 
+        }
+        
         return view('/sales/index', compact('sales'));
     }
 

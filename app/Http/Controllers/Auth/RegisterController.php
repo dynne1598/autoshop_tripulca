@@ -46,7 +46,33 @@ class RegisterController extends Controller
     {
         // $this->middleware('guest');
     }
+    //para sa register na page
+    //  public function edit($id)
+    // {
+    //     $register = Register::find($id);
+    //     $register['registered'] = $register->registered()->get();
+    //    // return compact('stock');
+    //    return view('register.edituser', compact('register'));
+    // }
 
+    //para maka edit sa register na page
+    // public function update($id, Request $request)
+    // {
+       
+    //     $user = Register::findOrFail($id);
+                
+    //         $this->validate($request,[
+    //             'name' => 'required|string|max:255',
+    //             'username' => 'required|string|max:255'
+    //         ]);
+
+
+    //         $register->update([
+    //             'name' => $request['name'],
+    //             'username' => $request['username'],
+    //         ]);
+    //     }
+    // }
 
     public function register(Request $request)
     {

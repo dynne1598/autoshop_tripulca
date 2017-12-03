@@ -33,6 +33,7 @@ Route::get('/stocks/buy/{id}/{qty}', 'StocksController@buy')->name('stocks.buy')
 //Sales routes
 Route::get('/sales', 'SalesController@index')->name('sales');
 Route::resource('sales','SalesController');
+Route::post('/sales/getdate', ['uses' => 'SalesController@getDateFrom', 'as' => 'sales.getDateFrom']);
 
 
 //Logs routes

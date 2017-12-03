@@ -164,16 +164,15 @@
     <td>
 
     <!-- <td><a class="btn mini blue-stripe" href="{site_url()}admin/editFront/2"></a></td> -->
-        <div id="modal">
+          <div id="modal">
                <div class="col-md-6">
-                <a href="{{ route('supplier.edit',[$supplier->id]) }}">
-                 <button type="button" class="btn btn-primary">Edit</button>
-                </a>
-
+                   <a href="{{ route('supplier.edit',[$supplier->id]) }}">
+                   <button type="button" class="btn btn-primary">Edit</button>
+                   </a>
+               </div>
             </div>
-      </div>
-    </td>
-</tr>
+          </td>
+      </tr>
 @endforeach
 </table>
 <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">

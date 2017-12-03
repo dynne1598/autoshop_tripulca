@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">Username</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -106,7 +106,7 @@
                     <thead>
                         <tr>
                             <th>NAME</th>
-                            <th>EMAIL</th>
+                            <th>USERNAME</th>
                             <th>ROLE</th>
                             <th>ACTION</th>
                         </tr> 
@@ -115,7 +115,7 @@
                       @foreach ($users as $user)
                         <tr>
                             <td>{{$user->name}}</td>
-                            <td>{{$user->email}}</td>
+                            <td>{{$user->username}}</td>
                             <td>{{$user->role}}</td>
                             <td><a href="{{route('register.destroy',$user->id) }}"><button type="submit" class="btn btn-danger">Delete</button>
                             </td>
@@ -124,20 +124,10 @@
                     @endforeach
                     </tbody>
                 </table>
-
-
             </div>
         </div>
     </div>
-
-
-    
 </div>
-
-
-
-
-
 
 @endsection
 
