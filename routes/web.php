@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::post('/login/custom', ['uses' => 'Auth\LoginController@login', 'as' => 'login.custom']);
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Supplier route
@@ -29,7 +31,7 @@ Route::resource('stocks','StocksController');
 Route::get('/stocks/buy/{id}/{qty}', 'StocksController@buy')->name('stocks.buy');
 
 //Sales routes
-// Route::get('/sales', 'SalesController@index')->name('sales');
+Route::get('/sales', 'SalesController@index')->name('sales');
 Route::resource('sales','SalesController');
 
 
@@ -42,7 +44,7 @@ Route::resource('logs','LogsController');
 Route::get('/invoice', 'InvoiceController@index')->name('invoice');
 
 //route para sa register
-Route::get('/register/destroy/{id}', 'RegisterController@destroy')->name('register.destroy');
+Route::get('/register/destroy/{id}', 'Auth\RegisterController@destroy')->name('register.destroy');
 // Edit Specific supply
 // Route::get('/supplier/{id}/edit',['uses' => 'SupplierController@edit','as' => 'supply.edit']);
 

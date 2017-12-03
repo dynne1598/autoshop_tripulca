@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Http\Request;
+use App\User;
+use Auth;
+
 class LoginController extends Controller
 {
     /*
@@ -25,8 +29,24 @@ class LoginController extends Controller
      * @var string
      */
     
+    public function login(Request $request){
 
-    protected $redirectTo = '/supplier';
+        if(Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password
+        ]))
+        {
+            $user = User::where('email', $request->email) -> first();
+            if($user->role === "Super Admin"){
+                return redirect('supplier');
+            }
+            elseif($user->role === "Admin"){
+                return redirect('sales');
+            }else{
+                return redirect('stocks');
+            }
+        }
+    }
 
     /**
      * Create a new controller instance.

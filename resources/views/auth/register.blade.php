@@ -5,38 +5,9 @@
 
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-4">
-            <div class="panel panel-default">
-                <table class="table table-responsive" style="width: 70%" align="center">
-                    <thead>
-                        <tr>
-                            <th>NAME</th>
-                            <th>EMAIL</th>
-                            <th>ROLE</th>
-                            <th>ACTION</th>
-                        </tr> 
-                    </thead>
-                    <tbody>
-                      @foreach ($users as $user)
-                        <tr>
-                            <td>{{$user->name}}</td>
-                            <td>{{$user->email}}</td>
-                            <td>{{$user->role}}</td>
-                            <td><a href="{{route('register.destroy',$user->id) }}"><button type="submit" class="btn btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
 
-
-            </div>
-        </div>
-    </div>
-
-    <div class="row" >
-        <div class="col-md-4" style="float:left; margin-top: -250px;">
+    <div class="row col-xs-4" >
+        <div class="">
             <div class="panel panel-default">
                 <div class="panel-heading"><b>REGISTER A USER</b></div>
 
@@ -114,9 +85,12 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
+                                <button onclick="register()" class="btn btn-primary">Register</button>
+                                    <script>function register()
+                                         {
+                                            alert('User already registered!')
+                                         }
+                                     </script>
                             </div>
                         </div>
                     </form>
@@ -125,7 +99,36 @@
         </div>
     </div>
 
+<div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <table class="table table-responsive" style="width: 70%" align="center">
+                    <thead>
+                        <tr>
+                            <th>NAME</th>
+                            <th>EMAIL</th>
+                            <th>ROLE</th>
+                            <th>ACTION</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                      @foreach ($users as $user)
+                        <tr>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->role}}</td>
+                            <td><a href="{{route('register.destroy',$user->id) }}"><button type="submit" class="btn btn-danger">Delete</button>
+                            </td>
+                            <td><button type="submit" class=" btn btn-primary">Edit</button></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
 
+
+            </div>
+        </div>
+    </div>
 
 
     

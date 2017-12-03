@@ -13,15 +13,15 @@
         </button>
       </div>
       <div class="modal-body">
-         <form class="form-horizontal" method="POST" action="{{ route('supplier.update', $supplier->id) }}">
+         <form class="form-horizontal" method="POST" action="{{ action('SupplierController@update', $supplier->id) }}">
                         {{ csrf_field() }}
 {{ method_field('PATCH') }}
                         <input name="_method" value="PUT" type="hidden">
-                        <div class="form-group{{ $errors->has('Item Name') ? ' has-error' : '' }}">
-                            <label for="Item Name" class="col-md-4 control-label">Item Name</label>
+                        <div class="form-group{{ $errors->has('item_name') ? ' has-error' : '' }}">
+                            <label for="item_name" class="col-md-4 control-label">Item Name</label>
 
                             <div class="col-md-6">
-                                <input id="Item Name" type="Item Name" class="form-control" name="item name" value="{{ $supplier->item_name }}" required autofocus>
+                                <input id="item_name" type="item_name" class="form-control" name="item_name" value="{{ $supplier->item_name }}" required autofocus>
 
                             </div>
                         </div>
@@ -35,50 +35,58 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('Description') ? ' has-error' : '' }}">
-                            <label for="Description" class="col-md-4 control-label">Description</label>
+                        <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                            <label for="description" class="col-md-4 control-label">Description</label>
 
                             <div class="col-md-6">
-                                <input id="Description" type="Description" class="form-control" name="description" value="{{ $supplier['stock'][0]->description }}" required>
+                                <input id="description" type="description" class="form-control" name="description" value="{{ $supplier['stock'][0]->description }}" required>
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('Category') ? ' has-error' : '' }}">
-                            <label for="Category" class="col-md-4 control-label">Category</label>
+                        <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
+                            <label for="category" class="col-md-4 control-label">Category</label>
 
                             <div class="col-md-6">
-                                <input id="Category" type="Category" class="form-control" name="category" value="{{ $supplier['stock'][0]->category }}" required>
+                                <input id="category" type="category" class="form-control" name="category" value="{{ $supplier['stock'][0]->category }}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('item_price') ? ' has-error' : '' }}">
+                            <label for="item_price" class="col-md-4 control-label">Item Price</label>
+
+                            <div class="col-md-6">
+                                <input id="item_price" type="number" class="form-control" name="item_price" value="{{ $supplier->item_price }}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('unit_cost') ? ' has-error' : '' }}">
+                            <label for="unit_cost" class="col-md-4 control-label">Unit Cost</label>
+
+                            <div class="col-md-6">
+                                <input id="unit_cost" type="number" class="form-control" name="unit_cost" value="{{ $supplier->unit_cost }}" required>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group{{ $errors->has('quantity') ? ' has-error' : '' }}">
+                            <label for="quantity" class="col-md-4 control-label">Quantity</label>
+
+                            <div class="col-md-6">
+                                <input id="quantity" type="number" class="form-control" name="quantity" value="{{ $supplier['stock'][0]->quantity}}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('supplier_name') ? ' has-error' : '' }}">
+                            <label for="supplier_name" class="col-md-4 control-label">Supplier</label>
+
+                            <div class="col-md-6">
+                              <input id="supplier_name" type="supplier_name" class="form-control" name="supplier_name" value="{{ $supplier->supplier_name }} " required >
                        </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('Item Price') ? ' has-error' : '' }}">
-                            <label for="Item Price" class="col-md-4 control-label">Item Price</label>
-
-                            <div class="col-md-6">
-                                <input id="Item Price" type="number" class="form-control" name="item_price" value="{{ $supplier->item_price }}" required>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group{{ $errors->has('Item Price') ? ' has-error' : '' }}">
-                            <label for="Item Price" class="col-md-4 control-label">Quantity</label>
-
-                            <div class="col-md-6">
-                                <input id="quantity" type="number" class="form-control" name="qty" value="{{ $supplier['stock'][0]->quantity}}" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('Supplier') ? ' has-error' : '' }}">
-                            <label for="Supplier" class="col-md-4 control-label">Supplier</label>
-
-                            <div class="col-md-6">
-                              <input id="Supplier" type="Supplier" class="form-control" name="supplier_name" value="{{ $supplier->supplier_name }} " required >
-                       </div>
-                        </div>
-
-                        </div>
                         <div class="modal-footer">
-                           <button type="submit" class="btn btn-primary">Submit</button>
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                            </a>
                         </div>
                     </form>
               </div>

@@ -161,17 +161,21 @@
       </div>
   </td>
 <!-- Edit button -->
-<td>
+    <td>
 
-<!-- <td><a class="btn mini blue-stripe" href="{site_url()}admin/editFront/2"></a></td> -->
-    <div id="modal">
-           <div class="col-md-6">
-            <a href="{{ route('supplier.edit',[$supplier->id]) }}">
-             <button type="button" class="btn btn-primary">Edit</button>
-            </a>
+    <!-- <td><a class="btn mini blue-stripe" href="{site_url()}admin/editFront/2"></a></td> -->
+        <div id="modal">
+               <div class="col-md-6">
+                <a href="{{ route('supplier.edit',[$supplier->id]) }}">
+                 <button type="button" class="btn btn-primary">Edit</button>
+                </a>
 
-        </div>
-
+            </div>
+      </div>
+    </td>
+</tr>
+@endforeach
+</table>
 <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -183,7 +187,7 @@
       </div>
 
 <div class="modal-body">
-         <form class="form-horizontal" method="POST" action="{{ route('supplier.update', $supplier->id) }}">
+         <form class="form-horizontal" method="POST" action="{{ action('SupplierController@update', $supplier->id) }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('Item Name') ? ' has-error' : '' }}">
@@ -247,7 +251,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <a href="{{ route('supplier.update',[$supplier->supplier]) }}">
+                            <a href="{{ url('supplier.update') }}">
                            <button type="submit" class="btn btn-primary">Submit</button></a>
                         </div>
                     </form>
@@ -255,12 +259,7 @@
          </div>
      </div>
   </div>
-</td>		
-
-				</tr>
-			@endforeach
-			<!--  -->
-		</table>
+	
 	</div>	
 @endsection
 

@@ -103,10 +103,11 @@ class SupplierController extends Controller
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Supplier $supplier)
+    public function update($id, Request $request)
     {
        
         $supply = Supplier::findOrFail($id);
+        $stocks = Stock::findOrFail($supply);
                 
             $this->validate($request,[
                 'item_name' => 'required|string|max:255',
@@ -116,26 +117,34 @@ class SupplierController extends Controller
                 'item_price' => 'required',
                 'unit_cost' => 'required',
                 'quantity' => 'required',
-                'supplier' => 'required|string|max:255',
+                'supplier_name' => 'required|string|max:255',
             ]);
 
 
             $supply->update([
 
-                 'item_name' => $request['item_name'],
+                'item_name' => $request['item_name'],
                 'stock_code' => $request['stock_code'],
-                'description' => $request['description'],
-                'category' => $request['category'],
                 'item_price' => $request['item_price'],
                 'unit_cost' => $request['unit_cost'],
+                'supplier_name' => $request['supplier_name'],
+                'description' => $request['description'],
+                'category' => $request['category'],
                 'quantity' => $request['quantity'],
-                'supplier' => $request['supplier'],
 
             ]);
 
+           /* $stocks->update([
+                'supplier_id' => $request['id'],
+                'item_name' => $request['item_name'],
+                'description' => $request['description'],
+                'category' => $request['category'],
+                'quantity' => $request['quantity'],
+            ]);*/
+
         // $supply = Supplier::findOrFail($request['$id']);
             
-        $supply->Stock()->save($supply);
+        //$supply->Stock()->save($supply);
 
         $action = 'Updated stock '.$supply->item_name;
         (new LogsController)->store('stock', $action);

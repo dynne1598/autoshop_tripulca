@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+
+use App\Http\Controllers\LogsController;
 class RegisterController extends Controller
 {
 
@@ -58,12 +60,11 @@ class RegisterController extends Controller
      public function destroy($id)
     {
 
-        $user = Register::find($id); 
-        $user->delete();   
+        $registered = User::find($id); 
+        $registered->delete();   
 
-        $action ='Deleted user ' . $user->name;
+        $action ='Deleted user ' . $registered->name;
         (new LogsController)->store('user', $action);
-
 
         \Session::flash('message', 'Successfully deleted the nerd!');
         return \Redirect::to('register');

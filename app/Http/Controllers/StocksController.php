@@ -6,6 +6,7 @@ use App\Stock;
 use App\Supplier;
 use Illuminate\Http\Request;
 use App\Sale;
+use Auth;
 
 class StocksController extends Controller
 {
@@ -66,7 +67,7 @@ class StocksController extends Controller
     public function edit($id)
     {
         $stock = Stock::find($id);
-       $stock['supplier'] = $stock->supplier()->get();
+        $stock['supplier'] = $stock->supplier()->get();
        // return compact('stock');
        return view('stocks.edit', compact('stock'));
     }
@@ -84,9 +85,20 @@ class StocksController extends Controller
        return compact('request');
        
         $stock = Stock::find($id);
+        $this->validate($request,[
+            'item_name' => 'required',
+            'stock_code' => 'required',
+            'description' => 'required',
+            'category' => 'required',
+            'item_price' => 'required',
+            'unit_cost' => 'required',
+            'quantity' => 'required',
+            'supplier' => 'required',
+
+        ]);
             $stock->update([
 
-                 'item_name' => $request['item_name'],
+                'item_name' => $request['item_name'],
                 'stock_code' => $request['stock_code'],
                 'description' => $request['description'],
                 'category' => $request['category'],
@@ -99,6 +111,7 @@ class StocksController extends Controller
     }
 //     //para ma minus-san tong qty sa stocks
     public function buy($id, $quantity) {
+
         $stocks = Stock::find($id);
         $stocks['supplier'] = $stocks->supplier()->get();
         
@@ -110,13 +123,18 @@ class StocksController extends Controller
             'item_name' => $stocks->item_name,
             'description' => $stocks->description,
             'item_price' => $stocks['supplier'][0]->item_price,
-            'quantity' => $stocks->quantity,
+            'quantity' => $final_qty,
             'total' => 0
             // 'created_at' => date('Y-d-m')
         ];
 
         $sales = Sale::create($data_sales);
-         return redirect('sales');
+        
+        if(Auth::User()->role == "Super Admin"){
+            return redirect('sales');
+        }else{
+            return back();
+        }
 
         
     }

@@ -4,29 +4,23 @@
 	
 		<!-- <input type="text" name="valueToSearch" placeholder="Value To Search"><br><br> -->
 		<br>
-        <form>
-        <div class="col-md-6">
-            <input type="text" name="Item name" placeholder="Item name">
-         
-        <button type="button" class="btn btn-primary">Filter</button>
-    	</div>
-	</form>
+        
 	<br><br>
-	<div class="panel">
-		<table class="table table-responsive" style="width: 70%" align="center">
+	   <div class="panel">
+		    <table class="table table-responsive" style="width: 70%" align="center">
 			
-			<tr>
-				<th>ITEM CODE</th>
-				<th>ITEM NAME</th>
-				<th>DESCRIPTION</th>
-				<th>CATEGORY</th>
-				<th>ITEM PRICE</th>
-        <th>UNIT COST</th>
-				<th>QUANTITY</th>
-				<th>SUPPLIER</th>
-				<th>DATE</th>
-			  <td>Action</td>
-			</tr>
+  			<tr>
+  				<th>ITEM CODE</th>
+  				<th>ITEM NAME</th>
+  				<th>DESCRIPTION</th>
+  				<th>CATEGORY</th>
+  				<th>ITEM PRICE</th>
+          <th>UNIT COST</th>
+  				<th>QUANTITY</th>
+  				<th>SUPPLIER</th>
+  				<th>DATE</th>
+  			  <td>Action</td>
+  			</tr>
 			@foreach ($supplier as $supply)
 				<tr>
 				
@@ -70,12 +64,16 @@
 
 <!-- <td><a class="btn mini blue-stripe" href="{site_url()}admin/editFront/2"></a></td> -->
 
-
+      @if(Auth::user()->role == 'Super Admin' OR Auth::user()->role == 'Admin')
 		   <div id="modal">
            <div class="col-md-6">
-            <a href="{{ route('stocks.edit',[$supply->stock->id]) }}">
+            <a href="{{ route('stocks.edit',[$supply->stock->id]) }}"></a>
              <button type="button" class="btn btn-primary">Edit</button>
-        </div>
+       </div>
+        @else
+          <div id="modal">
+          </div>
+        @endif
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -170,13 +168,19 @@
  		       </div>
 	     </div>
     </td>
+    @if($supply->stock->quantity == 0)
                <td>
+                  Not Available
+               </td>
+    @else
+      <td>
                   <div class="col-md-2">
                     <select>
                       <?php 
                             for ($i=0; $i < $supply->stock->quantity; $i++){ ?>
-                              <option><?= $i + 1; ?></option>
+                              <option><?= $buy = $i + 1; ?></option>
                       <?php 
+                        $supply->stock->quantity = $buy;
                       }?>
                     </select>
                   </div>
@@ -186,6 +190,7 @@
                     </a> 
                   </div>
                </td>
+    @endif
 
 </tr>
 			@endforeach
