@@ -253,11 +253,11 @@
                             <a href="{{ url('supplier.update') }}">
                            <button type="submit" class="btn btn-primary">Submit</button></a>
                         </div>
-                    </form>
-            </div>
-         </div>
-     </div>
-  </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
 	
 	</div>	
 @endsection

@@ -24,6 +24,10 @@ class StocksController extends Controller
         // $stocks = Stock::with('supplier')->get();
 
     }
+      public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
 
     /**

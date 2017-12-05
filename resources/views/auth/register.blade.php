@@ -115,11 +115,11 @@
                       @foreach ($users as $user)
                         <tr>
                             <td>{{$user->name}}</td>
-                            <td>{{$user->username}}</td>
+                            <td>{{$user->email}}</td>
                             <td>{{$user->role}}</td>
                             <td><a href="{{route('register.destroy',$user->id) }}"><button type="submit" class="btn btn-danger">Delete</button>
                             </td>
-                            <td><button type="submit" class=" btn btn-primary">Edit</button></td>
+                            <td><a href="{{route('register.edit',$user->id) }}"><button type="submit" class=" btn btn-primary">Edit</button></td>
                         </tr>
                     @endforeach
                     </tbody>

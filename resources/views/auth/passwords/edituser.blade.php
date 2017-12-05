@@ -13,15 +13,13 @@
         </button>
       </div>
       <div class="modal-body">
-         <form class="form-horizontal" method="POST" action="{{ action('RegisterController@update', $registered->id) }}">
-                        {{ csrf_field() }}
-{{ method_field('PATCH') }}
-                        <input name="_method" value="PUT" type="hidden">
+         <form class="form-horizontal" action="{{ route('register.update', $registered->id) }}" method="post">
+            {{ method_field('POST') }}
                         <div class="form-group{{ $errors->has('Name') ? ' has-error' : '' }}">
                             <label for="Name" class="col-md-4 control-label">Name</label>
 
                             <div class="col-md-6">
-                                <input id="Name" type="Name" class="form-control" name="Name" value="{{ $register->Name }}" required autofocus>
+                                <input id="Name" type="Name" class="form-control" name="name" value="{{ $registered->name }}" required autofocus>
 
                             </div>
                         </div>
@@ -30,12 +28,13 @@
                             <label for="Username" class="col-md-4 control-label">Username</label>
 
                             <div class="col-md-6">
-                                <input id="Username" type="Username" class="form-control" name="Username" value="{{ $register->Username }}" required>
+                                <input id="Username" type="Username" class="form-control" name="username" value="{{ $registered->username }}" required>
                             </div>
                        
                         <div class="modal-footer">
                               <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
+                        {{ csrf_field() }}
                     </form>
               </div>
          </div>

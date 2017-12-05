@@ -7,7 +7,8 @@
 	</form> -->
 		<form>
 			<div class="col-md-4" style="float: right; margin-top: 50px;">
-	        	<input type="text" class="total income"><strong> Total Income </strong></button>
+	        	<strong> Total Income: {{$total_income}} </strong>
+
 	    	</div>
 		</form>
 	<form class="form-horizontal" action="{{ route('sales.getDateFrom') }}" method="post">

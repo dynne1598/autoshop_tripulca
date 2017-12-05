@@ -14,13 +14,16 @@ class SalesController extends Controller
      */
     public function index()
     {
-
-        // echo "hello";die;
-        // echo $request->input('from_date');
-        // die();
-
+        
         $sales = Sale::all();
-        return view('/sales/index', compact('sales'));
+        
+        $total_income = $this->calculateTotal($sales);
+        return view('/sales/index', compact('sales', 'total_income'));
+    }
+    
+      public function __construct()
+    {
+        $this->middleware('auth');
     }
 
     // function date from/to
@@ -33,8 +36,18 @@ class SalesController extends Controller
         } catch (\Exception $e) {
             // 
         }
-        
-        return view('/sales/index', compact('sales'));
+        $total_income = $this->calculateTotal($sales);
+        return view('/sales/index', compact('sales','total_income'));
+    }
+
+
+    public function calculateTotal($data)
+    {
+        $total = 0;
+        foreach ($data as $key => $value) {
+         $total = $total + ($value->quantity * $value->item_price);
+        }
+        return $total;
     }
 
     /**

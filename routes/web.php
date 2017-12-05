@@ -46,6 +46,9 @@ Route::get('/invoice', 'InvoiceController@index')->name('invoice');
 
 //route para sa register
 Route::get('/register/destroy/{id}', 'Auth\RegisterController@destroy')->name('register.destroy');
+Route::get('/register/edit/{id}', 'Auth\RegisterController@edit')->name('register.edit');
+Route::post('/register/{id}', ['uses' => 'Auth\RegisterController@update', 'as' => 'register.update']);
+// Route::resource('register', 'Auth\RegisterController');
 // Edit Specific supply
 // Route::get('/supplier/{id}/edit',['uses' => 'SupplierController@edit','as' => 'supply.edit']);
 

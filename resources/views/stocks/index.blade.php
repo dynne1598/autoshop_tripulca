@@ -179,9 +179,10 @@
                       <?php 
                             for ($i=0; $i < $supply->stock->quantity; $i++){ ?>
                               <option><?= $buy = $i + 1; ?></option>
-                      <?php 
+
+                      <?php }
                         $supply->stock->quantity = $buy;
-                      }?>
+                      ?>
                     </select>
                   </div>
                   <div class="col-md-6">

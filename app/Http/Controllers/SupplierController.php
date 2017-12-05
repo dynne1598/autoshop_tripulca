@@ -35,6 +35,11 @@ class SupplierController extends Controller
         //
     }
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -149,7 +154,7 @@ class SupplierController extends Controller
         $action = 'Updated stock '.$supply->item_name;
         (new LogsController)->store('stock', $action);
 
-        return redirect()->route('supplier');
+        return redirect('supplier');
 
     }
 

@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
-
 use App\Http\Controllers\LogsController;
+
 class RegisterController extends Controller
 {
 
@@ -46,33 +47,34 @@ class RegisterController extends Controller
     {
         // $this->middleware('guest');
     }
-    //para sa register na page
-    //  public function edit($id)
-    // {
-    //     $register = Register::find($id);
-    //     $register['registered'] = $register->registered()->get();
-    //    // return compact('stock');
-    //    return view('register.edituser', compact('register'));
-    // }
+    
+    
+    
+    //para sa edit register na page
+     public function edit($id)
+    {
+        $registered = User::find($id);
+        // return compact('registered');
+        return view('auth/passwords/edituser', compact('registered'));
+    }
 
-    //para maka edit sa register na page
-    // public function update($id, Request $request)
-    // {
-       
-    //     $user = Register::findOrFail($id);
-                
-    //         $this->validate($request,[
-    //             'name' => 'required|string|max:255',
-    //             'username' => 'required|string|max:255'
-    //         ]);
+    //para maka update sa register na page
+    public function update($id, Request $request)
+    {
 
+        $register = User::findOrFail($id);
+               
+        // $this->validate($request,[
+        //     'name' => 'required|string|max:255',
+        //     'username' => 'required|string|max:255'
+        // ]);  
+        $register->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('username'),
+        ]);
 
-    //         $register->update([
-    //             'name' => $request['name'],
-    //             'username' => $request['username'],
-    //         ]);
-    //     }
-    // }
+        return redirect('register');
+    }
 
     public function register(Request $request)
     {
@@ -82,6 +84,7 @@ class RegisterController extends Controller
 
         return $this->registered($request, $users)?:redirect('register');
     }
+
     //para makadelete 
      public function destroy($id)
     {

@@ -28,6 +28,11 @@ class LogsController extends Controller
         return view('/logs/index', compact('stock_logs','acc_logs'));
     }
 
+      public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
