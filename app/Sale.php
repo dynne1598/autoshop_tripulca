@@ -12,7 +12,7 @@ class Sale extends Model
      * @var array
      */
       protected $fillable = [
-        'item_name','description','item_price', 'quantity', 'total',
+        'item_name','description','item_price', 'quantity', 'total','date'
     ];
     public $timestamps = false;
 }

@@ -88,19 +88,16 @@
 
                         <div class="form-group{{ $errors->has('Supplier') ? ' has-error' : '' }}">
                             <label for="Supplier" class="col-md-4 control-label">Supplier</label>
-
                             <div class="col-md-6">
                                 <input id="Supplier" type="Supplier" class="form-control" name="supplier_name" value="{{ old('Supplier') }}" required>
-                       </div>
+                            </div>
                         </div>
 
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                           <button type="submit" class="btn btn-primary">
-                                    Add Item
-                                </button>
+                          <button type="submit" class="btn btn-primary">Add Item</button>
                         </div>
-                    </form>
+          </form>
       </div>
     
     </div>

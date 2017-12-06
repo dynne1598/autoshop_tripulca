@@ -64,7 +64,7 @@
 
 <!-- <td><a class="btn mini blue-stripe" href="{site_url()}admin/editFront/2"></a></td> -->
 
-      @if(Auth::user()->role == 'Super Admin' OR Auth::user()->role == 'Admin')
+    <!--   @if(Auth::user()->role == 'Super Admin' OR Auth::user()->role == 'Admin')
 		   <div id="modal">
            <div class="col-md-6">
             <a href="{{ route('stocks.edit',[$supply->stock->id]) }}"></a>
@@ -167,24 +167,26 @@
     		      </div>
  		       </div>
 	     </div>
-    </td>
+    </td> -->
     @if($supply->stock->quantity == 0)
                <td>
                   Not Available
                </td>
     @else
-      <td>
+                <td>
                   <div class="col-md-2">
                     <select>
                       <?php 
                             for ($i=0; $i < $supply->stock->quantity; $i++){ ?>
                               <option><?= $buy = $i + 1; ?></option>
 
-                      <?php }
+                      <?php 
+
                         $supply->stock->quantity = $buy;
-                      ?>
+                      }?>
                     </select>
                   </div>
+
                   <div class="col-md-6">
                     <a href="{{ route('stocks.buy',[$supply->stock->id, $supply->stock->quantity]) }}">
                         <button type="button" class="btn btn-danger">Buy</button>  

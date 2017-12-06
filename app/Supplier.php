@@ -13,7 +13,7 @@ class Supplier extends Model
      * @var array
      */
     protected $fillable = [
-        'supplier_name', 'stock_code', 'unit_cost', 'item_name', 'item_price'
+        'supplier_name', 'stock_code', 'unit_cost', 'item_name', 'item_price', 'Description', 'Category', 'qty'
         ];
 
     public function stock(){

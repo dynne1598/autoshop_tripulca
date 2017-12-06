@@ -28,8 +28,32 @@
                             <label for="Username" class="col-md-4 control-label">Username</label>
 
                             <div class="col-md-6">
-                                <input id="Username" type="Username" class="form-control" name="username" value="{{ $registered->username }}" required>
+                                <input id="Username" type="Username" class="form-control" name="username" value="{{ $registered->email }}" required>                              
                             </div>
+                       </div>
+
+<!-- nadungag nga textbox for registered users/edit form -->
+                          <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                              <label for="password" class="col-md-4 control-label">Password</label>
+
+                              <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" value="{{ $registered->password }}" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                              </div>
+                          </div>
+
+                        <div class="form-group">
+                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{$registered->password_confirmation }}"  required>
+                            </div>
+                        </div>
+<!-- hantod dre -->
                        
                         <div class="modal-footer">
                               <button type="submit" class="btn btn-primary">Submit</button>

@@ -66,11 +66,11 @@
                                     Log Manager |
                                 </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="/invoice">
                                     Invoice |
                                 </a>
-                            </li>
+                            </li> -->
 
                             <li>
                                 <a href="/register">

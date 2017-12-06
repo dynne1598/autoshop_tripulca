@@ -104,7 +104,7 @@ class StocksController extends Controller
 
                 'item_name' => $request['item_name'],
                 'stock_code' => $request['stock_code'],
-                'description' => $request['description'],
+                'description' => $request->input('description'),
                 'category' => $request['category'],
                 'item_price' => $request['item_price'],
                 'unit_cost' => $request['unit_cost'],
@@ -128,7 +128,8 @@ class StocksController extends Controller
             'description' => $stocks->description,
             'item_price' => $stocks['supplier'][0]->item_price,
             'quantity' => $final_qty,
-            'total' => 0
+            'total' => 0,
+            'date' => date('Y-d-m')
             // 'created_at' => date('Y-d-m')
         ];
 

@@ -110,7 +110,6 @@ class SupplierController extends Controller
      */
     public function update($id, Request $request)
     {
-       
         $supply = Supplier::findOrFail($id);
         $stocks = Stock::findOrFail($supply);
                 
@@ -124,8 +123,7 @@ class SupplierController extends Controller
                 'quantity' => 'required',
                 'supplier_name' => 'required|string|max:255',
             ]);
-
-
+        
             $supply->update([
 
                 'item_name' => $request['item_name'],
@@ -133,23 +131,23 @@ class SupplierController extends Controller
                 'item_price' => $request['item_price'],
                 'unit_cost' => $request['unit_cost'],
                 'supplier_name' => $request['supplier_name'],
-                'description' => $request['description'],
+                'description' => $request->input('description'),
                 'category' => $request['category'],
                 'quantity' => $request['quantity'],
 
             ]);
 
-           /* $stocks->update([
-                'supplier_id' => $request['id'],
-                'item_name' => $request['item_name'],
-                'description' => $request['description'],
-                'category' => $request['category'],
-                'quantity' => $request['quantity'],
-            ]);*/
+            // $stocks->update([
+            //     'supplier_id' => $request['id'],
+            //     'item_name' => $request['item_name'],
+            //     'description' => $request['description'],
+            //     'category' => $request['category'],
+            //     'quantity' => $request['quantity'],
+            // ]);
 
         // $supply = Supplier::findOrFail($request['$id']);
             
-        //$supply->Stock()->save($supply);
+        // $supply->Stock()->save($supply);
 
         $action = 'Updated stock '.$supply->item_name;
         (new LogsController)->store('stock', $action);
