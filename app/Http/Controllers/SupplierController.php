@@ -123,7 +123,7 @@ class SupplierController extends Controller
                 'quantity' => 'required',
                 'supplier_name' => 'required|string|max:255',
             ]);
-        
+            // echo $request->input('description');die;
             $supply->update([
 
                 'item_name' => $request['item_name'],
@@ -131,13 +131,14 @@ class SupplierController extends Controller
                 'item_price' => $request['item_price'],
                 'unit_cost' => $request['unit_cost'],
                 'supplier_name' => $request['supplier_name'],
+                'quantity' => $request['quantity']
+            ]);
+            $supply->stock->update([
                 'description' => $request->input('description'),
-                'category' => $request['category'],
-                'quantity' => $request['quantity'],
-
+                'category' => $request->input('category')
             ]);
 
-            // $stocks->update([
+            // $stocks->update([  
             //     'supplier_id' => $request['id'],
             //     'item_name' => $request['item_name'],
             //     'description' => $request['description'],
@@ -166,7 +167,7 @@ class SupplierController extends Controller
     {
 
         $supply = Supplier::find($id); 
-        $supply->delete();   
+        $supply->delete();
         $supply->stock()->delete();
 
         $action ='Deleted stock ' . $supply->item_name;

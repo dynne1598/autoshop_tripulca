@@ -71,7 +71,9 @@ class RegisterController extends Controller
         $register->update([
             'name' => $request->input('name'),
             'email' => $request->input('username'),
-            'password' => $request->input('password'),
+            'password' => bcrypt($request['password']),
+
+
         ]);
 
         return redirect('register');
