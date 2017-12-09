@@ -128,34 +128,19 @@
 					
             <td>
 
-            <!-- delete method -->
-      <div id="modal">
-        <div class="col-md-6">
-          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-      </div>
 
-      <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-           <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="#delete"><b>Delete?</b></h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-      </div>
-
-    <div class="modal-body" id="delete">
-          <p>Are you sure you want to delete the existing file?</p>
-        </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-        <form class="form-horizontal" method="POST" action="{{ route('supplier.destroy', $supplier->id) }}">
+<div class="form-group">
+    <div class="col-md-6 col-md-offset-4">
+      <!-- <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{ route('supplier.destroy', $supplier->id) }}"><i class="fa fa-trash"></i>Delete</a> -->
+      <form class="form-horizontal" method="POST" action="{{ route('supplier.destroy', $supplier->id) }}">
           {{ csrf_field() }}
           <input type="hidden" name="_method" value="DELETE" />
-          <button type="submit" class="btn btn-secondary">Confirm</button> 
-        </form>
-        
-      </div>
+          <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button> 
+      </form>
+    </div>
+</div>
+
+
   </td>
 <!-- Edit button -->
     <td>

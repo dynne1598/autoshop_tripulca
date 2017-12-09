@@ -84,7 +84,7 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        //
+       
     }
 
     /**
@@ -149,7 +149,7 @@ class SupplierController extends Controller
         // $supply = Supplier::findOrFail($request['$id']);
             
         // $supply->Stock()->save($supply);
-
+ 
         $action = 'Updated stock '.$supply->item_name;
         (new LogsController)->store('stock', $action);
 
@@ -172,7 +172,6 @@ class SupplierController extends Controller
 
         $action ='Deleted stock ' . $supply->item_name;
         (new LogsController)->store('stock', $action);
-
 
         \Session::flash('message', 'Successfully deleted the nerd!');
         return \Redirect::to('supplier');
