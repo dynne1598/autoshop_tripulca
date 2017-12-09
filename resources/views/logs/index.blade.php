@@ -30,6 +30,7 @@
 					@endforeach
 				</table>	
 
+
 		    </div>
 		    <div class="tab-pane" id="stock">
 		    	<table class="table table-responsive" style="width: 70%" align="center">
@@ -46,7 +47,7 @@
 						    <td>{{$stock_log->date}}</td>
 						</tr>
 					@endforeach
-				</table>	
+				</table>
 		    </div>
 		</div>
 		

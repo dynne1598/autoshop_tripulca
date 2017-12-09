@@ -84,7 +84,7 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-       
+        //
     }
 
     /**
@@ -165,7 +165,7 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-
+       
         $supply = Supplier::find($id); 
         $supply->delete();
         $supply->stock()->delete();

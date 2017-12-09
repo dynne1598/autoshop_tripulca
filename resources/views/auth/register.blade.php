@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -12,7 +13,7 @@
                 <div class="panel-heading"><b>REGISTER A USER</b></div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                    <form class="form-horizontal" method="POST" action="{{ action('Auth\RegisterController@register') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -130,5 +131,7 @@
 </div>
 
 @endsection
+
+
 
            

@@ -5,12 +5,10 @@
 		<input type="text" name="valueToSearch" placeholder="Value To Search"><br><br>
 		<input type="submit" name="search" value="Filter"><br><br>
 	</form> -->
-		<form>
 			<div class="col-md-4" style="float: right; margin-top: 50px;">
 	        	<strong> Total Income: {{$total_income}} </strong>
 
 	    	</div>
-		</form>
 	<form class="form-horizontal" action="{{ route('sales.getDateFrom') }}" method="post">
         {{ method_field('POST') }}
 
