@@ -37,7 +37,6 @@
 				<th>DESCRIPTION</th>
 				<th>ITEM PRICE</th>
 				<th>QUANTITY</th>
-				<th>TOTAL</th>
 				<th>DATE</th>
 			</tr>
 
@@ -49,7 +48,6 @@
 				    <td>{{$sale->description}}</td>
 				    <td>{{$sale->item_price}}</td>
 					<td>{{$sale->quantity}}</td>
-					<td>{{$sale->total}}</td>
 					<td>{{$sale->date}}</td>
 				</tr>
 			@endforeach

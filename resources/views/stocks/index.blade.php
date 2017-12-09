@@ -168,31 +168,42 @@
  		       </div>
 	     </div>
     </td> -->
+
     @if($supply->stock->quantity == 0)
-               <td>
-                  Not Available
-               </td>
+        <td>
+            Not Available
+        </td>
     @else
-                <td>
-                  <div class="col-md-2">
-                    <select>
-                      <?php 
+        <td>
+            <form class="form-horizontal" action="{{ route('stocks.buy',[$supply->stock->id]) }}" method="post">
+                {{ method_field('POST') }}
+                <div class="col-md-2">
+                    <select name="quantity">
+                        <?php 
+                        
                             for ($i=0; $i < $supply->stock->quantity; $i++){ ?>
-                              <option><?= $buy = $i + 1; ?></option>
+                                <option>
+                                    <?php  
+                                        echo $i + 1; 
+                                        $buy = $i + 1;
+                                    ?>
+                                    
+                                </option>
 
-                      <?php 
-
-                        $supply->stock->quantity = $buy;
-                      }?>
+                        <?php 
+                            }
+                        ?>
                     </select>
-                  </div>
+                </div>
+                 
 
-                  <div class="col-md-6">
-                    <a href="{{ route('stocks.buy',[$supply->stock->id, $supply->stock->quantity]) }}">
-                        <button type="button" class="btn btn-danger">Buy</button>  
-                    </a> 
-                  </div>
-               </td>
+                <div class="col-md-6">
+                        <button type="submit" class="btn btn-danger">Buy</button>  
+                 
+                </div>
+                {{ csrf_field() }}
+           </form>
+       </td>
     @endif
 
 </tr>

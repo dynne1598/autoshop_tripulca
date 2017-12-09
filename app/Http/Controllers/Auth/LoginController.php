@@ -45,6 +45,10 @@ class LoginController extends Controller
             }else{
                 return redirect('stocks');
             }
+        } else {
+            // user is not valid, redirect back to login here
+            session()->flash('alert', 'Bad Credentials');
+            return view('welcome');
         }
     }
 

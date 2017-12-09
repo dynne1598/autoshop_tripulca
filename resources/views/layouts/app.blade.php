@@ -134,12 +134,12 @@
                                     Stocks |
                                 </a>
                             </li>
-                            <li>
+                            <!-- li>
                                 <a href="/invoice">
                                     Invoice |
                                 </a>
                             </li>
-
+ -->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>

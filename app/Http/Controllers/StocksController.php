@@ -114,11 +114,12 @@ class StocksController extends Controller
             ]);
     }
 //     //para ma minus-san tong qty sa stocks
-    public function buy($id, $quantity) {
+    public function buy($id,Request $request ) {
 
         $stocks = Stock::find($id);
         $stocks['supplier'] = $stocks->supplier()->get();
         
+        $quantity = $request->input('quantity');
         $final_qty = $stocks->quantity - $quantity;
         $result = Stock::where('id', $id)->update(['quantity'=> $final_qty]);
 
@@ -127,7 +128,7 @@ class StocksController extends Controller
             'item_name' => $stocks->item_name,
             'description' => $stocks->description,
             'item_price' => $stocks['supplier'][0]->item_price,
-            'quantity' => $final_qty,
+            'quantity' => $quantity,
             'total' => 0,
             'date' => date('Y-d-m')
             // 'created_at' => date('Y-d-m')

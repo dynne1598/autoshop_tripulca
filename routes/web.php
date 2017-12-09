@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::post('/login/custom', ['uses' => 'Auth\LoginController@login', 'as' => 'login.custom']);
+Route::post('/', ['uses' => 'Auth\LoginController@login', 'as' => 'login.custom']);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -28,7 +28,7 @@ Route::resource('supplier','SupplierController');
 //Stocks route
 Route::get('/stocks', 'StocksController@index')->name('stocks');
 Route::resource('stocks','StocksController');
-Route::get('/stocks/buy/{id}/{qty}', 'StocksController@buy')->name('stocks.buy');
+Route::post('/stocks/buy/{id}', 'StocksController@buy')->name('stocks.buy');
 
 //Sales routes
 Route::get('/sales', 'SalesController@index')->name('sales');

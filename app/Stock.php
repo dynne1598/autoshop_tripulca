@@ -13,7 +13,7 @@ class Stock extends Model
      * @var array
      */
     protected $fillable = [
-        'item_name', 'description', 'category', 'item_price', 'unit_cost', 'quantity', 'supplier_name',
+        'item_name', 'description', 'category', 'item_price', 'unit_cost', 'quantity', 'supplier_name', 
     ];
     protected $table = 'stocks';
 
