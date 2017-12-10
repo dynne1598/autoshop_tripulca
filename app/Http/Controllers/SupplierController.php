@@ -7,6 +7,8 @@ use App\Stock;
 use Illuminate\Http\Request;
 use App\Events\SupplierCreate;
 use App\Http\Controllers\LogsController;
+use Auth;
+use App\User;
 
 
 
@@ -19,10 +21,12 @@ class SupplierController extends Controller
      */
     public function index()
     {
-         $supplier = Supplier::all();
-        // \Session::flash('flash_message','You are now logged in!.'){{ Auth::user()->name }};
-        return view('/supplier/index', compact('supplier'));
-
+        if(Auth::User()->role == 'Super Admin'){
+             $supplier = Supplier::all();
+            // \Session::flash('flash_message','You are now logged in!.'){{ Auth::user()->name }};
+            return view('/supplier/index', compact('supplier'));
+        }
+        return back();
     }
 
     /**
@@ -149,7 +153,7 @@ class SupplierController extends Controller
         // $supply = Supplier::findOrFail($request['$id']);
             
         // $supply->Stock()->save($supply);
- 
+
         $action = 'Updated stock '.$supply->item_name;
         (new LogsController)->store('stock', $action);
 
@@ -165,13 +169,14 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-       
+
         $supply = Supplier::find($id); 
         $supply->delete();
         $supply->stock()->delete();
 
         $action ='Deleted stock ' . $supply->item_name;
         (new LogsController)->store('stock', $action);
+
 
         \Session::flash('message', 'Successfully deleted the nerd!');
         return \Redirect::to('supplier');

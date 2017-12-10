@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Sale;
+use App\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class SalesController extends Controller
@@ -14,11 +16,13 @@ class SalesController extends Controller
      */
     public function index()
     {
-        
-        $sales = Sale::all();
-        
-        $total_income = $this->calculateTotal($sales);
-        return view('/sales/index', compact('sales', 'total_income'));
+        if(Auth::User()->role == 'Super Admin' || Auth::User()->role == 'Admin'){
+            $sales = Sale::all();
+            
+            $total_income = $this->calculateTotal($sales);
+            return view('/sales/index', compact('sales', 'total_income'));
+        }
+        return back();
     }
     
       public function __construct()

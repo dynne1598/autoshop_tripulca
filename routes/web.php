@@ -45,17 +45,7 @@ Route::resource('logs','LogsController');
 Route::get('/invoice', 'InvoiceController@index')->name('invoice');
 
 //route para sa register
+Route::get('/register', 'Auth\RegisterController@index')->name('register');
 Route::get('/register/destroy/{id}', 'Auth\RegisterController@destroy')->name('register.destroy');
 Route::get('/register/edit/{id}', 'Auth\RegisterController@edit')->name('register.edit');
 Route::post('/register/{id}', ['uses' => 'Auth\RegisterController@update', 'as' => 'register.update']);
-// Route::resource('register', 'Auth\RegisterController');
-// Edit Specific supply
-// Route::get('/supplier/{id}/edit',['uses' => 'SupplierController@edit','as' => 'supply.edit']);
-
-
-
-// //nadungag
-// //password reset routes
-// Route::get('password/reset/{token?}','Auth\ResetPasswordController@showResetForm');
-// Route::post('password/email','Auth\ResetPasswordController@sendResetLinkEmail');
-// Route::post('password/reset','Auth\ResetPasswordController@reset');

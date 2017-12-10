@@ -7,6 +7,7 @@ use App\Supplier;
 use Illuminate\Http\Request;
 use App\Sale;
 use Auth;
+use App\User;
 
 class StocksController extends Controller
 {
@@ -17,12 +18,13 @@ class StocksController extends Controller
      */
     public function index()
     {
-        
-        $supplier = Supplier::orderBy('id')->with('stock')->get();
-        return view('/stocks/index', compact('supplier'));
-        //nadungag
-        // $stocks = Stock::with('supplier')->get();
-
+        if(Auth::User()->role == 'Super Admin' || Auth::User()->role == 'Employee'){
+            $supplier = Supplier::orderBy('id')->with('stock')->get();
+            return view('/stocks/index', compact('supplier'));
+            //nadungag
+            // $stocks = Stock::with('supplier')->get();
+        }
+        return back();
     }
       public function __construct()
     {

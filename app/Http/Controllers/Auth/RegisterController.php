@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use App\Http\Controllers\LogsController;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -35,7 +36,24 @@ class RegisterController extends Controller
      * @var string
      */
 
-    protected $redirectTo = '/home';
+    public function index()
+    {   
+        if(Auth::User()->role == 'Super Admin'){
+
+            $users['users'] = DB::table('users') -> get();
+
+            if(count($users) > 0)
+            {
+                return view('auth\register', $users);
+            }
+            else
+            {
+                $user = Auth::user();
+                return view('auth\register')->with(['users' => $user]);
+            }
+        }
+        return back();
+    }
 
     /**
      * Create a new controller instance.
