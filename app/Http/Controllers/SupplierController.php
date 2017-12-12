@@ -12,6 +12,7 @@ use App\User;
 
 
 
+
 class SupplierController extends Controller
 {
     /**
@@ -23,6 +24,8 @@ class SupplierController extends Controller
     {
         if(Auth::User()->role == 'Super Admin'){
              $supplier = Supplier::all();
+             //para ascending
+             $suppliers = \DB::table('suppliers')->orderBy('id','desc')->get();
             // \Session::flash('flash_message','You are now logged in!.'){{ Auth::user()->name }};
             return view('/supplier/index', compact('supplier'));
         }
@@ -52,6 +55,7 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {  
+
 
         $data_supp = [
             'supplier_name' => $request->input('supplier_name'),

@@ -16,8 +16,10 @@ class LogsController extends Controller
     {
 
         // $stock_logs = Log::all();
-        $stock_logs = \DB::table('logs')->where('type', '=', "stock")->get();
-        $acc_logs = \DB::table('logs')->where('type', '=', "account")->get();
+        $stock_logs = \DB::table('logs')->where('type', '=', "stock")->orderBy('id','desc')->get();
+        $acc_logs = \DB::table('logs')->where('type', '=', "account")->orderBy('id','desc')->get();
+
+
     
         // $acc_logs = where('account->dining->', 'salad')
 
@@ -47,7 +49,7 @@ class LogsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\m_responsekeys(conn, identifier)
      */
     public function store($type, $action)
     {

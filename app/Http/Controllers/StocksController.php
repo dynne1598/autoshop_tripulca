@@ -20,6 +20,7 @@ class StocksController extends Controller
     {
         if(Auth::User()->role == 'Super Admin' || Auth::User()->role == 'Employee'){
             $supplier = Supplier::orderBy('id')->with('stock')->get();
+            
             return view('/stocks/index', compact('supplier'));
             //nadungag
             // $stocks = Stock::with('supplier')->get();
